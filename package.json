@@ -1,0 +1,19 @@
+{
+  "name": "b_node_js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenvanson79/laptop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyenvanson79/laptop/issues"
+  },
+  "homepage": "https://github.com/nguyenvanson79/laptop#readme"
+}
