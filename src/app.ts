@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
     res.send ( "hello word")
 })
 app.get("/tieptheo", (req, res) => {
-    res.send ( "hello word")
+    res.send ( "hello word 1")
 })
 
 

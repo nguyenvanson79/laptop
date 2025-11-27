@@ -15,6 +15,12 @@ npm i --save-exact --save-dev typescript@5.7.3 @types/express@5.0.0 @types/node@
  npx tsc --init
  npx tsc
 
+ ## để tsc chạy trong src thì phải thêm 
+ "rootDir": "src",
+
+ ## chạy luôn không cần chạy lại watch 
+ npm i --save-exact --save-dev nodemon@3.1.9 ts-node@10.9.2
+
 
 
 
