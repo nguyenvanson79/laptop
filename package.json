@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/nguyenvanson79/laptop/issues"
   },
-  "homepage": "https://github.com/nguyenvanson79/laptop#readme"
+  "homepage": "https://github.com/nguyenvanson79/laptop#readme",
+  "dependencies": {
+    "express": "5.0.1"
+  }
 }
