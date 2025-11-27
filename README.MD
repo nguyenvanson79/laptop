@@ -32,6 +32,11 @@ npm i --save-exact --save-dev typescript@5.7.3 @types/express@5.0.0 @types/node@
 }
 
 
+## dùng env
+
+npm install --save-exact dotenv@16.4.7
+
+
 
 
 

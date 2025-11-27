@@ -8,17 +8,16 @@
     "start": "nodemon",
     "dev": "nodemon"
   },
-
-
-"nodemonConfig" : {
-  "watch": ["src"],
-  "ext": "ts",
-  "ignore": ["node_modules"],
-  "exec": "ts-node ./src/app.ts"
-},
-
-
-
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+      "node_modules"
+    ],
+    "exec": "ts-node ./src/app.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nguyenvanson79/laptop.git"
@@ -30,6 +29,7 @@
   },
   "homepage": "https://github.com/nguyenvanson79/laptop#readme",
   "dependencies": {
+    "dotenv": "16.4.7",
     "express": "5.0.1"
   },
   "devDependencies": {
