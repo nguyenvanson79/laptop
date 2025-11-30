@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>List User</title>
+    <title>User List</title>
 
     <!-- Bootstrap CSS -->
     <link
@@ -13,37 +13,57 @@
   </head>
 
   <body>
-    <div class="container mt-4">
+    <div class="container mt-5">
       <!-- Header -->
-      <div class="d-flex justify-content-between align-items-center mb-3">
-        <h1 class="h3">List Users</h1>
-        <a href="/create-user" class="btn btn-warning">Create a New User</a>
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">List Users</h1>
+        <a href="/create-user" class="btn btn-warning">Create New User</a>
       </div>
 
       <hr />
 
-      <!-- Table -->
+      <!-- Users Table -->
       <table class="table table-hover table-bordered align-middle">
         <thead class="table-light">
           <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th width="60">ID</th>
+            <th width="180">Name</th>
+            <th width="220">Email</th>
             <th>Address</th>
-            <th class="text-center">Action</th>
+            <th width="180" class="text-center">Actions</th>
           </tr>
         </thead>
 
         <tbody>
-          <% users.forEach(function (user1) { %>
+          <% users.forEach((user) => { %>
           <tr>
-            <td><%= user1.id %></td>
-            <td><%= user1.name %></td>
-            <td><%= user1.email %></td>
-            <td><%= user1.address %></td>
+            <td><%= user.id %></td>
+            <td><%= user.name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.address %></td>
+
             <td class="text-center">
-              <button class="btn btn-danger btn-sm me-2">Delete</button>
-              <button class="btn btn-primary btn-sm">Update</button>
+              <!-- Delete -->
+              <form
+                action="/handle-delete-user/<%= user.id %>"
+                method="POST"
+                class="d-inline"
+              >
+                <button class="btn btn-danger btn-sm px-3" type="submit">
+                  Delete
+                </button>
+              </form>
+
+              <!-- Update -->
+              <form
+                action="/handle-view-user/<%= user.id %>"
+                method="GET"
+                class="d-inline"
+              >
+                <button class="btn btn-warning btn-sm px-3" type="submit">
+                  View
+                </button>
+              </form>
             </td>
           </tr>
           <% }) %>

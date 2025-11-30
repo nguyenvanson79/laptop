@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllUser, handleCreateUser } from "services/user_services";
+import { getAllUser, getUserById, handleCreateUser, handleDeleteUser, updateUserById } from "services/user_services";
 
 // hàm xử lý trang home
 const getHomePage = async (req: Request, res: Response) => {
@@ -30,4 +30,32 @@ const postCreateUser = async(req: Request, res: Response) => {
   return res.redirect("/");
 };
 
-export { getHomePage, getCreateUserPage, postCreateUser };
+// xóa user
+const postDeleteUser =async( req:Request , res: Response) => {
+  const {id} = req.params ;
+await handleDeleteUser(id);
+  return res.redirect('/')
+
+}
+
+// xem chi tiết user
+const getViewUser = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  // lấy user theo id 
+  const user = await getUserById(id);
+  return res.render("view-user.ejs", {
+    id: id,
+    user: user
+  });
+};
+
+//  cập nhật 
+ const postUpdateUser = async (req: Request, res: Response) => {
+  const { id , email , address , name } = req.body;
+  // cập nhật 
+   await updateUserById(id , email , address , name);
+
+    return res.redirect('/')
+};
+
+export { getHomePage, getCreateUserPage, postCreateUser , postDeleteUser , getViewUser , postUpdateUser };

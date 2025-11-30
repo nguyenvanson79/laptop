@@ -1,5 +1,6 @@
 import getConnection from "../config/data";
 
+// Tạo mới user
 const handleCreateUser = async (
   fullname: string,
   email: string,
@@ -8,32 +9,27 @@ const handleCreateUser = async (
   try {
     const connection = await getConnection();
 
-  const sql = 'INSERT INTO `users`(`name`, `email` , `address`) VALUES (?, ?,?)';
-  const values = [fullname, email, address];
+    const sql = 'INSERT INTO `users`(`name`, `email`, `address`) VALUES (?, ?, ?)';
+    const values = [fullname, email, address];
 
-  const [result, fields] = await connection.execute(sql, values);
+    const [result, fields] = await connection.execute(sql, values);
 
     return result;
-    
   } catch (err) {
     console.log(err);
     return null;
   }
 };
 
-
-// lấy dữ liệu từ database
+// Lấy dữ liệu từ database
 const getAllUser = async () => {
-  // tạo kết nối tới MySQL
   const connection = await getConnection();
 
   try {
-    // thực hiện câu query lấy tất cả user
     const [results, fields] = await connection.query(
       "SELECT * FROM `users`"
     );
 
-    // trả kết quả về cho service/controller
     return results;
   } catch (err) {
     console.log(err);
@@ -41,4 +37,58 @@ const getAllUser = async () => {
   }
 };
 
-export { handleCreateUser, getAllUser };
+// Xóa user
+const handleDeleteUser = async (id: string) => {
+  try {
+    const connection = await getConnection();
+
+    const sql = 'DELETE FROM `users` WHERE `id` = ?';
+    const values = [id];
+
+    const [result, fields] = await connection.execute(sql, values);
+
+    return result;
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
+};
+
+// Lấy user theo điều kiện
+const getUserById = async (id:string) => {
+  try {
+    const connection = await getConnection();
+
+    const sql = 'SELECT * FROM `users` WHERE `id` = ? ';
+    const values = [id];
+
+    const [result, fields] = await connection.execute(sql, values);
+
+    return result[0];
+  } catch (err) {
+    console.log(err);
+        return [];
+
+  }
+};
+
+// Lấy user theo điều kiện
+const updateUserById = async (id:string , email: string , address : string , name : string) => {
+  try {
+    const connection = await getConnection();
+
+     const sql = 'UPDATE `users` SET `name` = ? , `email` =? , `address`= ?  WHERE `id` = ?';
+  const values = [name , email , address , id];
+
+    const [result, fields] = await connection.execute(sql, values);
+
+    return result;
+  } catch (err) {
+    console.log(err);
+        return [];
+
+  }
+};
+
+
+export { handleCreateUser, getAllUser, handleDeleteUser, getUserById ,updateUserById};
