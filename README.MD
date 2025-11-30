@@ -64,6 +64,20 @@ npm i --save-exact --save-dev @types/ejs@3.1.5
 ## MYSQL2 
 npm i --save-exact mysql2@3.12.0
 
+##  cấu hình baseurl 
+vào file tsconfig.json 
+
+có thêm 2 mục baseurl vaf paths
+
+npm i --save-dev --save-exact tsconfig-paths@4.2.0
+
+sữa package.json 
+"exec": "ts-node -r tsconfig-paths/register ./src/app.ts"
+
+sữa lại tiếp 
+    "start:debug": "nodemon --inspect=9229 -e ts,tsx --exec node -r ts-node/register -r tsconfig-paths/register ./src/app.ts"
+
+
 
 
 

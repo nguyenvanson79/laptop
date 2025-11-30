@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getAllUser, handleCreateUser } from "../services/user_services";
+import { getAllUser, handleCreateUser } from "services/user_services";
 
 // hàm xử lý trang home
 const getHomePage = async (req: Request, res: Response) => {
