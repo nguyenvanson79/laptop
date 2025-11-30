@@ -36,6 +36,33 @@ npm i --save-exact --save-dev typescript@5.7.3 @types/express@5.0.0 @types/node@
 
 npm install --save-exact dotenv@16.4.7
 
+## Template Engine ejs
+npm install --save-exact ejs@3.1.10
+npm i --save-exact --save-dev @types/ejs@3.1.5
+
+## bug  
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "debug-hoidanit",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "start:debug"
+            ]
+        }
+    ],
+}
+  
+     "start:debug": "nodemon --inspect=9229 -e ts,tsx --exec node -r ts-node/register ./src/app.ts"
+
+
+## MYSQL2 
+npm i --save-exact mysql2@3.12.0
 
 
 

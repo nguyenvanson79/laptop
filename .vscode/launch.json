@@ -1,0 +1,16 @@
+{
+    "version": "1.0.0",
+    "configurations": [
+        {
+            "name": "B_NODE_JS",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run",
+                "start:debug"
+            ]
+        }
+    ],
+}

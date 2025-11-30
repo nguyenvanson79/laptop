@@ -1,22 +1,32 @@
 import express from "express";
 
+// khi ta dùng env → tự động load biến môi trường từ file .env
+import "dotenv/config";
+// require('dotenv').config() ;  // cách viết cũ (CommonJS)
 
-import 'dotenv/config'; 
-// require('dotenv').config() ;
+// đưa web router vào để tách logic routes ra file riêng
+import webRoutes from "./routes/web";
 
+const app = express();
+const port = process.env.PORT || 8080;
 
-const app = express() ;
+// thiết lập EJS làm view engine để render giao diện
+app.set("view engine", "ejs");
 
-const port = process.env.PORT || 8080 ;
+// chú ý dùng __dirname thì mới dùng được render đúng thư mục views
+app.set("views", __dirname + "/views");
 
-app.get("/", (req, res) => {
-    res.send ( "hello word")
-})
-app.get("/tieptheo", (req, res) => {
-    res.send ( "hello word 1 okla")
-})
+// cấu hình để lấy được dữ liệu từ form (req.body)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// cấu hình thư mục public để chứa file tĩnh (css, js, images)
+app.use(express.static("public"));
 
-app.listen(port , () => {
-    console.log("my app running " ,  port)
-})
+// tách routes ra file riêng để code gọn gàng hơn
+webRoutes(app);
+
+// chạy server với PORT lấy từ .env hoặc 8080
+app.listen(port, () => {
+  console.log("my app running", port);
+});
