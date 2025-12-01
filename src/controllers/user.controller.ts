@@ -21,10 +21,10 @@ const getCreateUserPage = (req: Request, res: Response) => {
 // xử lý form tạo user
 const postCreateUser = async(req: Request, res: Response) => {
   // lấy dữ liệu từ form gửi lên
-  const { fullname, email, address } = req.body;
+  const { name, email, address } = req.body;
 
   // gọi xử lý tạo user ở service
-  await handleCreateUser(fullname, email, address);
+  await handleCreateUser(name, email, address);
 
   // dùng redirect thay cho render để quay về trang chủ
   return res.redirect("/");

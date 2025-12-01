@@ -2,7 +2,7 @@ import getConnection from "../config/data";
 
 // Tạo mới user
 const handleCreateUser = async (
-  fullname: string,
+  name: string,
   email: string,
   address: string
 ) => {
@@ -10,7 +10,7 @@ const handleCreateUser = async (
     const connection = await getConnection();
 
     const sql = 'INSERT INTO `users`(`name`, `email`, `address`) VALUES (?, ?, ?)';
-    const values = [fullname, email, address];
+    const values = [name, email, address];
 
     const [result, fields] = await connection.execute(sql, values);
 
