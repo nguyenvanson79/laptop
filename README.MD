@@ -79,6 +79,20 @@ sữa lại tiếp
 
 
 
+## câu hình prisma
+npm i --save-dev --save-exact prisma@6.3.0
+npx prisma init
+
+vào sữa file prisma => .env nữa 
+
+npm i --save-exact @prisma/client@6.3.0
+
+
+
+
+
+
+
 
 
 
