@@ -1,4 +1,6 @@
+import { prisma } from "config/data_comfig";
 import getConnection from "../config/data";
+import { PrismaClient } from "@prisma/client";
 
 // Tạo mới user
 const handleCreateUser = async (
@@ -6,19 +8,13 @@ const handleCreateUser = async (
   email: string,
   address: string
 ) => {
-  try {
-    const connection = await getConnection();
-
-    const sql = 'INSERT INTO `users`(`name`, `email`, `address`) VALUES (?, ?, ?)';
-    const values = [name, email, address];
-
-    const [result, fields] = await connection.execute(sql, values);
-
-    return result;
-  } catch (err) {
-    console.log(err);
-    return null;
-  }
+  await prisma.user.create({
+    data: {
+      name: name,
+      email: email,
+      address: address,
+    },
+  });
 };
 
 // Lấy dữ liệu từ database
@@ -27,9 +23,8 @@ const getAllUser = async () => {
 
   try {
     const [results, fields] = await connection.query(
-      "SELECT * FROM `users`"
+      "SELECT * FROM `user`"
     );
-
     return results;
   } catch (err) {
     console.log(err);
@@ -42,11 +37,10 @@ const handleDeleteUser = async (id: string) => {
   try {
     const connection = await getConnection();
 
-    const sql = 'DELETE FROM `users` WHERE `id` = ?';
+    const sql = "DELETE FROM `user` WHERE `id` = ?";
     const values = [id];
 
     const [result, fields] = await connection.execute(sql, values);
-
     return result;
   } catch (err) {
     console.log(err);
@@ -54,12 +48,12 @@ const handleDeleteUser = async (id: string) => {
   }
 };
 
-// Lấy user theo điều kiện
-const getUserById = async (id:string) => {
+// Lấy user theo ID
+const getUserById = async (id: string) => {
   try {
     const connection = await getConnection();
 
-    const sql = 'SELECT * FROM `users` WHERE `id` = ? ';
+    const sql = "SELECT * FROM `user` WHERE `id` = ?";
     const values = [id];
 
     const [result, fields] = await connection.execute(sql, values);
@@ -67,28 +61,36 @@ const getUserById = async (id:string) => {
     return result[0];
   } catch (err) {
     console.log(err);
-        return [];
-
+    return [];
   }
 };
 
-// Lấy user theo điều kiện
-const updateUserById = async (id:string , email: string , address : string , name : string) => {
+// Cập nhật user
+const updateUserById = async (
+  id: string,
+  email: string,
+  address: string,
+  name: string
+) => {
   try {
     const connection = await getConnection();
 
-     const sql = 'UPDATE `users` SET `name` = ? , `email` =? , `address`= ?  WHERE `id` = ?';
-  const values = [name , email , address , id];
+    const sql =
+      "UPDATE `users` SET `name` = ?, `email` = ?, `address` = ? WHERE `id` = ?";
+    const values = [name, email, address, id];
 
     const [result, fields] = await connection.execute(sql, values);
-
     return result;
   } catch (err) {
     console.log(err);
-        return [];
-
+    return [];
   }
 };
 
-
-export { handleCreateUser, getAllUser, handleDeleteUser, getUserById ,updateUserById};
+export {
+  handleCreateUser,
+  getAllUser,
+  handleDeleteUser,
+  getUserById,
+  updateUserById,
+};
