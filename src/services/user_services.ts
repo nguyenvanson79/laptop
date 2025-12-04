@@ -19,50 +19,23 @@ const handleCreateUser = async (
 
 // Lấy dữ liệu từ database
 const getAllUser = async () => {
-  const connection = await getConnection();
-
-  try {
-    const [results, fields] = await connection.query(
-      "SELECT * FROM `user`"
-    );
-    return results;
-  } catch (err) {
-    console.log(err);
-    return [];
-  }
+const users = await prisma.user.findMany()
+return users ;
 };
 
 // Xóa user
 const handleDeleteUser = async (id: string) => {
-  try {
-    const connection = await getConnection();
-
-    const sql = "DELETE FROM `user` WHERE `id` = ?";
-    const values = [id];
-
-    const [result, fields] = await connection.execute(sql, values);
-    return result;
-  } catch (err) {
-    console.log(err);
-    return [];
-  }
+ const deleteUser = await prisma.user.delete({
+  where :{id : +id}
+ })
 };
 
 // Lấy user theo ID
 const getUserById = async (id: string) => {
-  try {
-    const connection = await getConnection();
-
-    const sql = "SELECT * FROM `user` WHERE `id` = ?";
-    const values = [id];
-
-    const [result, fields] = await connection.execute(sql, values);
-
-    return result[0];
-  } catch (err) {
-    console.log(err);
-    return [];
-  }
+ const user = await prisma.user.findUnique({
+  where :{id : +id }
+ })
+ return user ;
 };
 
 // Cập nhật user
@@ -72,19 +45,16 @@ const updateUserById = async (
   address: string,
   name: string
 ) => {
-  try {
-    const connection = await getConnection();
-
-    const sql =
-      "UPDATE `users` SET `name` = ?, `email` = ?, `address` = ? WHERE `id` = ?";
-    const values = [name, email, address, id];
-
-    const [result, fields] = await connection.execute(sql, values);
-    return result;
-  } catch (err) {
-    console.log(err);
-    return [];
+const updateUser = await prisma.user.update({
+  where :{
+    id :+id
+  } ,
+  data :{
+    email : email ,
+    address :address ,
+    name : name ,
   }
+})
 };
 
 export {
