@@ -45,7 +45,7 @@ npm i --save-exact --save-dev @types/ejs@3.1.5
     "version": "1.0.0",
     "configurations": [
         {
-            "name": "debug-hoidanit",
+            "name": "B_NODE_JS",
             "type": "node",
             "request": "launch",
             "cwd": "${workspaceRoot}",
