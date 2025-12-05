@@ -88,6 +88,11 @@ vào sữa file prisma => .env nữa
 npm i --save-exact @prisma/client@6.3.0
 
 
+<!-- tạo data  -->
+npx prisma migrate dev --name init-project
+npx prisma generate
+
+
 
 
 
