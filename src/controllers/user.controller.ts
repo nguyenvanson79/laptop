@@ -15,7 +15,7 @@ const getHomePage = async (req: Request, res: Response) => {
 
 // render trang tạo user
 const getCreateUserPage = (req: Request, res: Response) => {
-  return res.render("create_user.ejs");
+  return res.render("admin/user/create.ejs");
 };
 
 // xử lý form tạo user

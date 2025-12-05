@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
+    <meta name="author" content="Hỏi Dân IT" />
+    <title>user to shop</title>
+
+    <link href="/admin/css/styles.css" rel="stylesheet" />
+    <script
+      src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="sb-nav-fixed">
+    <%- include('../layout/header'); -%>
+
+    <div id="layoutSidenav">
+      <%- include('../layout/sidenav'); -%>
+
+      <div id="layoutSidenav_content">
+        <main>
+          <div class="container-fluid px-4">
+            <h1 class="mt-4">Manage Users</h1>
+            <ol class="breadcrumb mb-4">
+              <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+              <li class="breadcrumb-item active">
+                <a href="/admin/user">Users</a>
+              </li>
+              <li class="breadcrumb-item active">create</li>
+            </ol>
+            <div>
+              <!-- Header -->
+              <div class="container mt-5">
+                <div class="row justify-content-center">
+                  <div class="col-md-6">
+                    <div class="card shadow-lg border-0 rounded-4">
+                      <div class="card-body p-4">
+                        <h3 class="text-center mb-4">Create a User</h3>
+
+                        <form action="/handle-create-user" method="post">
+                          <!-- Name -->
+                          <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="name"
+                              placeholder="Your name"
+                              required
+                            />
+                          </div>
+
+                          <!-- Email -->
+                          <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input
+                              type="email"
+                              class="form-control"
+                              name="email"
+                              placeholder="name@example.com"
+                              required
+                            />
+                          </div>
+
+                          <!-- Address -->
+                          <div class="mb-3">
+                            <label class="form-label">Address</label>
+                            <textarea
+                              class="form-control"
+                              name="address"
+                              rows="3"
+                              placeholder="Enter address..."
+                              required
+                            ></textarea>
+                          </div>
+
+                          <button class="btn btn-primary w-100" type="submit">
+                            Submit
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+
+        <%- include('../layout/footer'); -%>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/admin/js/scripts.js"></script>
+  </body>
+</html>
